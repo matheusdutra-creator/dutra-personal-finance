@@ -200,6 +200,36 @@ dialog form { padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); }
 .cores label span { display: block; width: 32px; height: 32px; border-radius: 50%; border: 3px solid transparent; }
 .cores label input:checked + span { border-color: var(--texto); }
 
+/* Formulário de lançamento: campos por tipo */
+.segmentado.tres { grid-template-columns: repeat(3, 1fr); }
+.segmentado.tres span { padding: 8px 2px; font-size: .9rem; }
+.so-transf { display: none; }
+#form-lanc[data-tipo="transferencia"] .so-transf { display: block; }
+#form-lanc[data-tipo="transferencia"] .so-normal { display: none; }
+#form-lanc[data-editando="sim"] .so-novo { display: none; }
+.marcar { display: flex; align-items: center; gap: 10px; font-size: .92rem; margin: 0 0 12px; }
+.marcar input { width: 20px; height: 20px; accent-color: var(--marca); }
+.segmentado.modo { margin-bottom: 12px; }
+.segmentado.modo span { padding: 6px; font-size: .9rem; }
+
+/* Início: visão contínua */
+.destaque small { color: var(--suave); font-size: .82rem; }
+.destaque .grande { font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; margin: 2px 0; color: var(--receita); }
+.destaque .grande.neg { color: var(--perigo); }
+.por-dia { font-size: .95rem; margin-bottom: 12px; }
+.linhas-valor { border-top: 1px solid var(--borda); padding-top: 8px; }
+.linha-valor { display: flex; justify-content: space-between; gap: 10px; font-size: .9rem; padding: 4px 0; }
+.linha-valor b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mini-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.mini-kpis div { background: var(--fundo); border-radius: 10px; padding: 8px 10px; }
+.mini-kpis small { display: block; }
+.mini-kpis b { font-variant-numeric: tabular-nums; }
+.clicavel { cursor: pointer; }
+.clicavel:active { background: var(--trilho); }
+.item-dir { display: flex; flex-direction: column; align-items: flex-end; }
+.sub-dir { color: var(--suave); font-size: .75rem; white-space: nowrap; }
+.neutro { color: var(--suave); }
+
 .aviso {
   position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(20px);
   background: var(--texto); color: var(--fundo); padding: 10px 16px; border-radius: 99px; font-size: .9rem;

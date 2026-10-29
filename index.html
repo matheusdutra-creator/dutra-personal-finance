@@ -17,9 +17,9 @@
 </head>
 <body>
   <header class="topo">
-    <button class="mes-btn" data-acao="mes-anterior" aria-label="Mês anterior">‹</button>
+    <button class="mes-btn" data-acao="periodo-anterior" aria-label="Período anterior">‹</button>
     <div class="mes-titulo" id="mes-titulo"></div>
-    <button class="mes-btn" data-acao="mes-proximo" aria-label="Próximo mês">›</button>
+    <button class="mes-btn" data-acao="periodo-proximo" aria-label="Próximo período">›</button>
   </header>
 
   <main id="conteudo"></main>
@@ -39,34 +39,41 @@
         <h2 id="lanc-titulo">Novo lançamento</h2>
         <button type="button" class="fechar" data-acao="fechar" aria-label="Fechar">✕</button>
       </div>
-      <div class="segmentado" role="radiogroup">
+      <div class="segmentado tres" role="radiogroup">
         <label><input type="radio" name="tipo" value="despesa" checked><span>Despesa</span></label>
         <label><input type="radio" name="tipo" value="receita"><span>Receita</span></label>
+        <label><input type="radio" name="tipo" value="transferencia"><span>Transferência</span></label>
       </div>
+      <p class="dica so-transf">Use para pagar a fatura do cartão ou mover dinheiro entre contas. Não conta como gasto.</p>
       <label class="campo">Descrição
-        <input name="descricao" list="sugestoes" placeholder="Ex.: Carne moída" required>
+        <input name="descricao" list="sugestoes" placeholder="Ex.: Carne moída">
         <datalist id="sugestoes"></datalist>
       </label>
       <div class="linha">
         <label class="campo">Valor (R$)
-          <input name="valor" inputmode="decimal" placeholder="0,00" required>
+          <input name="valor" inputmode="decimal" placeholder="0,00">
         </label>
-        <label class="campo qtd">Qtd.
+        <label class="campo qtd so-normal">Qtd.
           <input name="quantidade" inputmode="decimal" value="1">
         </label>
       </div>
       <p class="dica" id="lanc-total"></p>
       <div class="linha">
-        <label class="campo">Categoria
+        <label class="campo so-normal">Categoria
           <select name="categoriaId"></select>
         </label>
-        <label class="campo">Conta
+        <label class="campo"><span id="rotulo-conta">Conta</span>
           <select name="contaId"></select>
+        </label>
+        <label class="campo so-transf">Para
+          <select name="contaDestinoId"></select>
         </label>
       </div>
       <label class="campo">Data
         <input type="date" name="data" required>
       </label>
+      <label class="marcar so-normal so-novo"><input type="checkbox" name="repetir"> Repetir todo mês neste dia (recorrente)</label>
+      <p class="dica" id="lanc-origem"></p>
       <p class="erro" id="lanc-erro"></p>
       <div class="botoes">
         <button type="button" class="btn perigo" data-acao="excluir-lanc" hidden>Excluir</button>
