@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Minhas Finanças</title>
+  <meta name="description" content="Controle financeiro pessoal: lançamentos, orçamentos por conta e análise de gastos.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Finanças">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topo">
+    <button class="mes-btn" data-acao="mes-anterior" aria-label="Mês anterior">‹</button>
+    <div class="mes-titulo" id="mes-titulo"></div>
+    <button class="mes-btn" data-acao="mes-proximo" aria-label="Próximo mês">›</button>
+  </header>
+
+  <main id="conteudo"></main>
+
+  <nav class="abas">
+    <button data-aba="inicio" class="ativa"><span class="ic">◉</span>Início</button>
+    <button data-aba="lancamentos"><span class="ic">☰</span>Lançamentos</button>
+    <button class="fab" data-acao="novo" aria-label="Novo lançamento">+</button>
+    <button data-aba="analise"><span class="ic">▤</span>Análise</button>
+    <button data-aba="ajustes"><span class="ic">⚙</span>Ajustes</button>
+  </nav>
+
+  <!-- Formulário de lançamento -->
+  <dialog id="dlg-lanc" class="folha">
+    <form id="form-lanc" method="dialog" autocomplete="off">
+      <div class="folha-topo">
+        <h2 id="lanc-titulo">Novo lançamento</h2>
+        <button type="button" class="fechar" data-acao="fechar" aria-label="Fechar">✕</button>
+      </div>
+      <div class="segmentado" role="radiogroup">
+        <label><input type="radio" name="tipo" value="despesa" checked><span>Despesa</span></label>
+        <label><input type="radio" name="tipo" value="receita"><span>Receita</span></label>
+      </div>
+      <label class="campo">Descrição
+        <input name="descricao" list="sugestoes" placeholder="Ex.: Carne moída" required>
+        <datalist id="sugestoes"></datalist>
+      </label>
+      <div class="linha">
+        <label class="campo">Valor (R$)
+          <input name="valor" inputmode="decimal" placeholder="0,00" required>
+        </label>
+        <label class="campo qtd">Qtd.
+          <input name="quantidade" inputmode="decimal" value="1">
+        </label>
+      </div>
+      <p class="dica" id="lanc-total"></p>
+      <div class="linha">
+        <label class="campo">Categoria
+          <select name="categoriaId"></select>
+        </label>
+        <label class="campo">Conta
+          <select name="contaId"></select>
+        </label>
+      </div>
+      <label class="campo">Data
+        <input type="date" name="data" required>
+      </label>
+      <p class="erro" id="lanc-erro"></p>
+      <div class="botoes">
+        <button type="button" class="btn perigo" data-acao="excluir-lanc" hidden>Excluir</button>
+        <button type="button" class="btn sec" data-acao="salvar-outro">Salvar + outro</button>
+        <button type="submit" class="btn prim">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Formulário genérico (contas, categorias) -->
+  <dialog id="dlg-item" class="folha">
+    <form id="form-item" method="dialog" autocomplete="off">
+      <div class="folha-topo">
+        <h2 id="item-titulo"></h2>
+        <button type="button" class="fechar" data-acao="fechar" aria-label="Fechar">✕</button>
+      </div>
+      <div id="item-campos"></div>
+      <p class="erro" id="item-erro"></p>
+      <div class="botoes">
+        <button type="button" class="btn perigo" data-acao="excluir-item" hidden>Excluir</button>
+        <button type="submit" class="btn prim">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+  <input type="file" id="arquivo-backup" accept="application/json,.json" hidden>
+
+  <script src="app.js"></script>
+</body>
+</html>

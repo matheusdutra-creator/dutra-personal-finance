@@ -1,0 +1,7 @@
+# Dados pessoais — nunca vão para o GitHub
+*.xlsx
+*.csv
+*backup*.json
+
+# Configurações locais do Claude Code
+.claude/settings.local.json
